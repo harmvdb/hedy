@@ -81,8 +81,8 @@ class LogFetcher:
         level = _get_value(filters_with_values, 'level', '%')
         username = _get_value(filters_with_values, 'username', '%')
 
-        prep_statement = config['athena']['prepare_statement']
-        return f"EXECUTE {prep_statement} USING {start}, {end}, {exception}, {level}, {username};"
+        prep_statement = config['athena']['prepared_statement']
+        return f"EXECUTE {prep_statement} USING TIMESTAMP {start}, TIMESTAMP {end}, {exception}, {level}, {username};"
 
     def _result_to_response(self, data, is_first_batch):
         headers, rows = self._get_rows_and_headers(data)

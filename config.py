@@ -3,7 +3,7 @@ import socket
 
 app_name = os.getenv('HEROKU_APP_NAME', socket.gethostname())
 dyno = os.getenv('DYNO')
-athena_query = os.getenv('AWS_ATHENA_PREPARE_STATEMENT')
+athena_query = os.getenv('AWS_ATHENA_PREPARED_STATEMENT')
 
 config = {
     'port': os.getenv ('PORT') or 8080,
@@ -38,7 +38,7 @@ config = {
     'athena': {
         'region': 'eu-west-1',
         'database': 'hedy-logs',
-        'prepare_statement': athena_query,
+        'prepared_statement': athena_query,
         's3_output': 's3://hedy-query-outputs/',
         'max_results': 50
     },
